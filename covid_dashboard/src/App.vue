@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    filtro:
         <select name="filtro" id="filtro" v-model="filtro">
         <option value="AC">Acre</option>
     <option value="AL">Alagoas</option>
@@ -28,17 +29,13 @@
     <option value="SP">São Paulo</option>
     <option value="SE">Sergipe</option>
     <option value="TO">Tocantins</option>
-
-
     </select>
     <br>
     <div class="container">
     <!-- conteúdo aqui !-->
-    <!--<input name="titulo" id="titulo" autocomplete="off" v-model="filtro"> !-->
-
     
     <p v-for="log in  logsComFiltro" :key="log.city_ibge_code">
-      <card :uf="log.state" :mortes="log.deaths" :mortalidade="log.death_rate" :data="log.date" :confirmados="log.confirmed"/>
+      <card :id="log.city" :uf="log.state" :mortes="log.deaths" :mortalidade="log.death_rate" :data="log.date" :confirmados="log.confirmed" :city="log.city"/>
       </p>
 
   </div>
@@ -58,7 +55,7 @@ export default {
   data(){
     return{
       loged: [],
-      num:500,
+      num:10000,
       filtro:'sp',
       realDate:'',
     }
@@ -81,7 +78,7 @@ export default {
       } else {
         return this.loged;
       }
-    }
+    },
   },
 }
 </script>
@@ -94,7 +91,7 @@ export default {
 
   width: fit-content;
 
-  background: chocolate;
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
